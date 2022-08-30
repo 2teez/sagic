@@ -2,7 +2,6 @@
 from datafile.datafile import run
 import re
 import sys
-from datetime import datetime
 
 # network elements names, id for 3G and dpc for 2G
 datacontainer = run()

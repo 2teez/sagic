@@ -4,3 +4,5 @@ dumpz/
 *.txt
 !datafiles.txt
 !datafile/bscrnclisting.txt
+*/*.pyc
+*.pyc

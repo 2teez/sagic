@@ -50,11 +50,8 @@ def _make_laigci(lst: list[str]):
     filehandler = open(filename, 'a') if _check_file(
         filename) else open(filename, 'w')
 
-    print(f'ADD LAIGCI: GCI="{gci}", LAIGCINAME="{laigci_name}",MSCVLRTYPE=MSCVLRNUM,'
-          f'MSCN={constants.MSCN}, VLRN={constants.VLR}, NONBCLAI=NO, LAICAT=GCI, LAIT=HVLR,'
-          f'LOCNONAME=\"INVALID\", BSCNI1=NAT, BSCDPC1=\"{dpc[4:]}\", CSNAME=\"{cs_name}\",'
-          f'TONENAME=\"INVALID\", CELLGROUPNAME=\"INVALID\", TZDSTNAME=\"INVALID\",'
-          f'LOCATIONIDNAME=\"INVALID\", E911PHASE=INVALID;', file=filehandler)
+    constants.print_gci(filehandler, **{'gci': gci, 'laigci_name': laigci_name,
+                                        'dpc': dpc, 'cs_name': cs_name})
 
 
 def _make_laisai(lst: list[str]):
@@ -72,10 +69,8 @@ def _make_laisai(lst: list[str]):
     filehandler = open(filename, 'a') if _check_file(
         filename) else open(filename, 'w')
 
-    print(f'ADD LAISAI: SAI="{sai}", LAISAINAME="{laisai_name}", PROXYLAI=NO, MSCVLRTYPE=MSCVLRNUM,'
-          f'MSCN={constants.MSCN}, VLRN={constants.VLR}, NONBCLAI=NO, LAICAT=SAI, LAIT=HVLR, LOCNONAME=\"INVALID\",'
-          f'RNCID1={rncid}, CSNAME=\"{cs_name}\", TONENAME=\"INVALID\", CELLGROUPNAME=\"INVALID\",'
-          f'TZDSTNAME=\"INVALID\", LOCATIONIDNAME=\"INVALID\", E911PHASE=INVALID;', file=filehandler)
+    constants.print_sai(filehandler, **{'sai': sai, 'laisai_name': laisai_name,
+                                        'rncid': rncid, 'cs_name': cs_name})
 
 
 def _data_munch(line: str):

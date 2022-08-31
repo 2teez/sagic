@@ -4,5 +4,5 @@ dumpz/
 *.txt
 !datafiles.txt
 !datafile/bscrnclisting.txt
-datafile/__pycache__/
+datafile/__pycache__/*.pyc
 *.pyc

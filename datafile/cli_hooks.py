@@ -38,13 +38,14 @@ def _modify_container(file: str) -> None:
     #     pprint(container)
 
 
-def _user_input(msg: str, header: str = r'^[^0-9]') -> str:
+def _user_input(msg: str, header: str = r'^[^0-9]',
+                error_msg: str = 'Invalid input. Use Integers only') -> str:
     'Get user input, adjust it to meet the DPC'
     value = input(msg)
     if value == constants.ZERO_DPC:
         return value
     while re.match(header, value, re.MULTILINE) or value == '':
-        print('Invalid input. Use Integers only', end='')
+        print(error_msg, end='')
         print(f'( or Use {constants.ZERO_DPC} to Cancel.)')
         value = input(msg)
     return value.upper()
@@ -61,15 +62,14 @@ def _run(result: Union[list[str], str], **kwargs) -> None:
         constants.print_gci(filename, **{'gci': kwargs['lai'], 'laigci_name': kwargs['name'],
                                          'dpc': f"H'00{kwargs['dpc']}", 'cs_name': result})
     else:
-        print(f'\a\a\a'f'Invalid. \nREASON: Remove the Zero(s) in front of the DPC,'
-              f' then check again. OR ** The Network Element doesn\'t exists. **')
+        print(f'\a\a\a'f'Invalid Inputs. \nREASON(s): Remove the Zero(s) in front of the DPC,'
+              f' then try again. \nOR ** The Network Element with the DPC `{kwargs["dpc"]}` doesn\'t exists. **')
         sys.exit()
 
 
 def main() -> None:
     global container
     container = _swap_hash_key_value(container)
-    pprint(container)
 
     filename = os.path.abspath('datafile/bscrnclisting.txt')
 
@@ -77,7 +77,8 @@ def main() -> None:
 
     dpc = _user_input('Enter DPC: ')
     result = container.get(f"H'00{dpc}", None)
-    lai = _user_input('Enter LAI (GCI or SAI): ', r'^[^62150]')
+    lai = _user_input('Enter LAI (GCI or SAI): ', r'^[^62150]',
+                      'Invalid Input. Input Value * MAY * start with `62150`')
     name = input('Enter Site Name: ')
 
     _run(result, **{'lai': lai, 'dpc': dpc, 'name': name})

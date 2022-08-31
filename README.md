@@ -7,15 +7,16 @@ for adding cell sites namely 2G, 3G and 4G on the network.
 
 ## To Use:
 
-From the CLI, clone this repo (sagic)[https://github.com/2teez/sagic]. 
+From the CLI, clone this repo (sagic)[https://github.com/2teez/sagic].
 Then change into the sagic directory and then run:
 
 ```
 $ python sagic.py
 ```
 
-## OR 
+## OR
 
 ```
 $ python ./sagic.py
 ```
+Where `$` is the shell prompt, which might be different in your own prompt.

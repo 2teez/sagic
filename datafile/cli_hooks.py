@@ -1,4 +1,5 @@
 from pprint import pprint
+from typing import Union
 from datafile import run
 import constants
 import os
@@ -42,11 +43,27 @@ def _user_input(msg: str, header: str = r'^[^0-9]') -> str:
     value = input(msg)
     if value == constants.ZERO_DPC:
         return value
-    while re.match(header, value):
+    while re.match(header, value, re.MULTILINE) or value == '':
         print('Invalid input. Use Integers only', end='')
         print(f'( or Use {constants.ZERO_DPC} to Cancel.)')
         value = input(msg)
     return value.upper()
+
+
+def _run(result: Union[list[str], str], **kwargs) -> None:
+    if isinstance(result, list):
+        filename = open(f'{result[1]}.txt', 'w')
+        constants.print_sai(filename, **{'sai': kwargs['lai'], 'laisai_name': kwargs['name'],
+                                         'rncid': result[0], 'cs_name': result[1]})
+        filename.close()
+    elif isinstance(result, str):
+        filename = open(f'{result}.txt', 'w')
+        constants.print_gci(filename, **{'gci': kwargs['lai'], 'laigci_name': kwargs['name'],
+                                         'dpc': f"H'00{kwargs['dpc']}", 'cs_name': result})
+    else:
+        print(f'\a\a\a'f'Invalid. \nREASON: Remove the Zero(s) in front of the DPC,'
+              f' then check again. OR ** The Network Element doesn\'t exists. **')
+        sys.exit()
 
 
 def main() -> None:
@@ -58,19 +75,12 @@ def main() -> None:
 
     _modify_container(filename)
 
-    result = container.get(f"H'00{_user_input('Enter DPC: ')}", None)
+    dpc = _user_input('Enter DPC: ')
+    result = container.get(f"H'00{dpc}", None)
+    lai = _user_input('Enter LAI (GCI or SAI): ', r'^[^62150]')
+    name = input('Enter Site Name: ')
 
-    lai = _user_input('Enter LAI (GCI or SAI): ', r'^62150')
-
-    if isinstance(result, list):
-        filename = f'{result[1]}.txt'
-        #constants.print_sai(filename, **{})
-        print(lai, result)
-    elif isinstance(result, str):
-        print(lai, result)
-    else:
-        print(f'\a\a\a'f'Invalid. The Network Element doesn\'t exists.')
-        sys.exit()
+    _run(result, **{'lai': lai, 'dpc': dpc, 'name': name})
 
 
 if __name__ == '__main__':

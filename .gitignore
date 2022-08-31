@@ -1,2 +1,8 @@
 .DS_Store
 dumpz/
+*/*.txt
+*.txt
+!datafiles.txt
+!datafile/bscrnclisting.txt
+datafile/__pycache__/*.pyc
+*.pyc

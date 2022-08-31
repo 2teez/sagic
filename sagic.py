@@ -1,14 +1,11 @@
 
 from datafile.datafile import run
+from datafile import constants
 import re
 import sys
-from datetime import datetime
 
 # network elements names, id for 3G and dpc for 2G
 datacontainer = run()
-
-MSCN = '\"2348050002161\"'
-VLR = '\"2348050002161\"'
 
 
 def _check_file(file: str) -> bool:
@@ -41,7 +38,7 @@ def _make_laigci(lst: list[str]):
         cs_name = (list(elem
                         for elem, _ in datacontainer.items() if cs_name[1:] in elem[1:])) or None
         cs_name = cs_name[0] if cs_name else 'NOT AVALIABLE'
-        dpc = datacontainer.get(cs_name, '000000')
+        dpc = datacontainer.get(cs_name, constants.ZERO_DPC)
 
     laigci_name = lst[2]
     lac = _modification(lst[1])
@@ -53,11 +50,8 @@ def _make_laigci(lst: list[str]):
     filehandler = open(filename, 'a') if _check_file(
         filename) else open(filename, 'w')
 
-    print(f'ADD LAIGCI: GCI="{gci}", LAIGCINAME="{laigci_name}",MSCVLRTYPE=MSCVLRNUM,'
-          f'MSCN={MSCN}, VLRN={VLR}, NONBCLAI=NO, LAICAT=GCI, LAIT=HVLR,'
-          f'LOCNONAME=\"INVALID\", BSCNI1=NAT, BSCDPC1=\"{dpc[4:]}\", CSNAME=\"{cs_name}\",'
-          f'TONENAME=\"INVALID\", CELLGROUPNAME=\"INVALID\", TZDSTNAME=\"INVALID\",'
-          f'LOCATIONIDNAME=\"INVALID\", E911PHASE=INVALID;', file=filehandler)
+    constants.print_gci(filehandler, **{'gci': gci, 'laigci_name': laigci_name,
+                                        'dpc': dpc, 'cs_name': cs_name})
 
 
 def _make_laisai(lst: list[str]):
@@ -75,10 +69,8 @@ def _make_laisai(lst: list[str]):
     filehandler = open(filename, 'a') if _check_file(
         filename) else open(filename, 'w')
 
-    print(f'ADD LAISAI: SAI="{sai}", LAISAINAME="{laisai_name}", PROXYLAI=NO, MSCVLRTYPE=MSCVLRNUM,'
-          f'MSCN={MSCN}, VLRN={VLR}, NONBCLAI=NO, LAICAT=SAI, LAIT=HVLR, LOCNONAME=\"INVALID\",'
-          f'RNCID1={rncid}, CSNAME=\"{cs_name}\", TONENAME=\"INVALID\", CELLGROUPNAME=\"INVALID\",'
-          f'TZDSTNAME=\"INVALID\", LOCATIONIDNAME=\"INVALID\", E911PHASE=INVALID;', file=filehandler)
+    constants.print_sai(filehandler, **{'sai': sai, 'laisai_name': laisai_name,
+                                        'rncid': rncid, 'cs_name': cs_name})
 
 
 def _data_munch(line: str):

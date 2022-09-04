@@ -36,4 +36,5 @@ This will ask for the destination point code, the LAI (GCI or SAI). Then create 
 ### TODO
 
 I intend to call, `cli_hooks` file from the main module file and activate this module using a CLI switch.
-Like so: `S python ./sagic.py --oneline`
+
+*Like so: `S python ./sagic.py --oneline`*

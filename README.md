@@ -21,6 +21,18 @@ $ python ./sagic.py
 ```
 Where `$` is the shell prompt, which might be different in your own prompt.
 
+### Important # _NOTE_
+
+**Datafiles.txt** must be in the same directory with ```sagic``` file for the above command to work.
+You specify the data for configuration like so
+
+```
+Network Elements	<space>	Location Area Code	<space>	Cell Site Name_Sector Number	<space>	Cell Site Number
+```
+E.g.
+
+```HENU_RNC5	3060	ENU024B_S1	11811```
+
 ## Another Option
 
 Using sagic creates file or files of different sites on different elements. But there is another

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 from datafile.datafile import run
 from datafile import constants

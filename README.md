@@ -45,6 +45,11 @@ $ python datafile/cli_hooks.py
 
 This will ask for the destination point code, the LAI (GCI or SAI). Then create the aproprate cell site accordingly.
 
+### Clean Up
+After generating your file/files for different network elements. *Move* all of those files into a folder
+namely *_oresult_*. You can then use your files and delete afterwards, without deleting other important
+files.
+
 ### TODO
 
 I intend to call, `cli_hooks` file from the main module file and activate this module using a CLI switch.

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+## make a folder `oresult`
+folder=oresult
+mkdir "$folder"
+
+## list the content of the file
+## and move all the text files into the folder
+## created above. These files could be deleted.
+while read -r file; do
+	if [[ "$file" =~ ^.+\.txt$ ]]; then
+		if ! [[ "$file" =~ datafiles.txt ]]; then
+			mv "$file" "$folder"
+		fi
+	fi
+done < <(ls)
+
+if [ -z "$folder" ]; then
+	echo "No file is clean up"
+else
+	echo "Delete the files in $folder"
+fi

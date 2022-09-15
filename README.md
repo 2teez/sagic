@@ -47,7 +47,7 @@ This will ask for the destination point code, the LAI (GCI or SAI). Then create 
 
 ### Clean Up
 After generating your file/files for different network elements. *`Move`* all of those files into a folder
-namely *`_oresult_`*. You can then use your files and delete afterwards, without deleting other important
+namely *_`oresult`_*. You can then use your files and delete afterwards, without deleting other important
 files.
 
 ### TODO

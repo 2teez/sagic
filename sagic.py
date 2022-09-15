@@ -52,33 +52,25 @@ def _make_laigci(lst: list[str]):
     'Make a site configuration for 2G. Write to a new or existing file'
     cs_name = _elem_name_search(lst[0])
 
-    # cs_name = _elem_name_search(cs_name)
     dpc = datacontainer.get(cs_name, None)
 
-    # print(f'{dpc}, {lst[0]}, {cs_name}')
+    # when dpc is None -- different case
+    if not dpc:
+        cs_name = cs_name[0] if cs_name else 'NOT AVALIABLE'
+        dpc = datacontainer.get(cs_name, constants.ZERO_DPC)
 
-    # when dpc is None -- different case -- get argument first values `lst[0]`
-    # if not dpc:
-    #     cs_name = (list(elem
-    #                     for elem, _ in datacontainer.items() if lst[1:] in elem[1:])) or None
-    #     cs_name = cs_name[0] if cs_name else 'NOT AVALIABLE'
-    #     dpc = datacontainer.get(cs_name, constants.ZERO_DPC)
+    laigci_name = lst[2]
+    lac = _modification(lst[1])
+    cellid = _modification(lst[3])
+    gci = f'62150{lac}{cellid}'
 
-    # print(
-    #     f'BSC NAME: {cs_name}, {_word_stripper(cs_name)}, {_elem_name_search(cs_name)}, {dpc}')
+    # check if the file exist
+    filename = f'{cs_name}.txt'
+    filehandler = open(filename, 'a') if _check_file(
+        filename) else open(filename, 'w')
 
-    # laigci_name = lst[2]
-    # lac = _modification(lst[1])
-    # cellid = _modification(lst[3])
-    # gci = f'62150{lac}{cellid}'
-
-    # # check if the file exist
-    # filename = f'{cs_name}.txt'
-    # filehandler = open(filename, 'a') if _check_file(
-    #     filename) else open(filename, 'w')
-
-    # constants.print_gci(filehandler, **{'gci': gci, 'laigci_name': laigci_name,
-    #                                     'dpc': dpc, 'cs_name': cs_name})
+    constants.print_gci(filehandler, **{'gci': gci, 'laigci_name': laigci_name,
+                                        'dpc': dpc, 'cs_name': cs_name})
 
 
 def _make_laisai(lst: list[str]):

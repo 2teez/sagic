@@ -5,6 +5,9 @@ folder=oresult
 mkdir "$folder"
 
 move_files() { #@ USAGE:
+## list the content of the file
+## and move all the text files into the folder
+## created above. These files could be deleted.
 	while read -r file; do
 		if [[ "$file" =~ ^.+\.txt$ ]]; then
 			if ! [[ "$file" =~ datafiles.txt ]]; then
@@ -12,6 +15,11 @@ move_files() { #@ USAGE:
 			fi
 		fi
 	done < <(ls)
+# if [ -z "$folder" ]; then
+# 	echo "No file is clean up"
+# else
+# 	echo "Delete the files in $folder"
+# fi
 }
 
 remove_files() { #@ USAGE:
@@ -19,9 +27,6 @@ remove_files() { #@ USAGE:
 	rm -rf "$folder"
 }
 
-## list the content of the file
-# and move all the text files into the folder
-## created above. These files could be deleted.
 while getopts ":df" options; do
 	case "$options" in
 	d)
@@ -37,16 +42,3 @@ while getopts ":df" options; do
 		;;
 	esac
 done
-# while read -r file; do
-# 	if [[ "$file" =~ ^.+\.txt$ ]]; then
-# 		if ! [[ "$file" =~ datafiles.txt ]]; then
-# 			mv "$file" "$folder"
-# 		fi
-# 	fi
-# done < <(ls)
-
-# if [ -z "$folder" ]; then
-# 	echo "No file is clean up"
-# else
-# 	echo "Delete the files in $folder"
-# fi

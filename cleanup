@@ -15,11 +15,6 @@ move_files() { #@ USAGE:
 			fi
 		fi
 	done < <(ls)
-# if [ -z "$folder" ]; then
-# 	echo "No file is clean up"
-# else
-# 	echo "Delete the files in $folder"
-# fi
 }
 
 remove_files() { #@ USAGE:

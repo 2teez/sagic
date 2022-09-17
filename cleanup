@@ -1,20 +1,32 @@
 #!/bin/bash
 
+## check if no arugment is passed
+if [[ $# -eq 0 ]]; then
+	echo "Invalid arguments."
+	echo "Usage: basename $0 [-f | -d]"
+fi
+
+
 ## make a folder `oresult`
 folder=oresult
-mkdir "$folder"
+
 
 move_files() { #@ USAGE:
+## check if the directory exist
+if ! [[ -e "$folder" ]]; then
+    mkdir "$folder"
+fi
+
 ## list the content of the file
 ## and move all the text files into the folder
 ## created above. These files could be deleted.
-	while read -r file; do
+    while read -r file; do
 		if [[ "$file" =~ ^.+\.txt$ ]]; then
 			if ! [[ "$file" =~ datafiles.txt ]]; then
 				mv "$file" "$folder"
 			fi
 		fi
-	done < <(ls)
+    done < <(ls)
 }
 
 remove_files() { #@ USAGE:
@@ -25,11 +37,11 @@ remove_files() { #@ USAGE:
 while getopts ":df" options; do
 	case "$options" in
 	d)
-		echo "-delete by moving the files"
+		echo "-delete by moving the files to folder '${folder}'."
 		move_files
 		;;
 	f)
-		echo "-full(y) delete by removing files"
+		echo "-full(y) delete by removing files and the folder '${folder}'."
 		remove_files
 		;;
 	*)

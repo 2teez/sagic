@@ -115,7 +115,7 @@ def main(file: str):
     with open(file, 'r') as fin:
         for line in fin.readlines():
             _data_munch(line)
-    print(f'Run script `cleanup`')
+    print(f'Run script `./cleanup [-f | -d]`')
 
 
 if __name__ == '__main__':

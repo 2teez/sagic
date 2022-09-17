@@ -3,7 +3,7 @@
 ## check if no arugment is passed
 if [[ $# -eq 0 ]]; then
 	echo "Invalid arguments."
-	echo "Usage: basename $0 [-f | -d]"
+	echo "Usage: $0 [-f | -d]"
 fi
 
 

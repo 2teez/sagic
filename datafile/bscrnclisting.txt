@@ -1,5 +1,5 @@
-+++    MSOFTX/*MEID:5 MENAME:MSC19C*/        2022-08-26 16:48:47+01:00
-O&M    #972
++++    MSOFTX/*MEID:5 MENAME:MSC19C*/        2022-11-16 15:03:22+01:00
+O&M    #1658
 %%LST BSC: SERVERCLASS=LOCAL;%%
 RETCODE = 0  Operation succeeded
 
@@ -47,11 +47,8 @@ Configuration Information about BSC
 
 ---    END
 
-
-
-
-+++    MSOFTX/*MEID:5 MENAME:MSC19C*/        2022-08-26 16:50:03+01:00
-O&M    #981
++++    MSOFTX/*MEID:5 MENAME:MSC19C*/        2022-11-16 15:03:39+01:00
+O&M    #1663
 %%LST RNC: SERVERCLASS=LOCAL;%%
 RETCODE = 0  Operation succeeded
 
@@ -65,7 +62,8 @@ Basic Information about RNC
  124     National network   H'000871  H'0015F6  HENU_RNC3  2348050002161  0              
  136     National network   H'000871  H'001606  HENU_RNC4  2348050002161  0              
  154     National network   H'000871  H'001618  HENU_RNC5  2348050002161  0              
-(Number of results = 6)
+ 159     National network   H'000871  H'00161D  HENU_RNC6  2348050002161  0              
+(Number of results = 7)
 
 Configuration Information about RNC
 -----------------------------------
@@ -77,6 +75,8 @@ Configuration Information about RNC
  124     support                    0                LOCAL        PUBLIC                IP             Not support MGW report IP/ATM bearer resources  NULL                             
  136     support                    0                LOCAL        PUBLIC                IP             Not support MGW report IP/ATM bearer resources  NULL                             
  154     support                    0                LOCAL        PUBLIC                IP             Not support MGW report IP/ATM bearer resources  NULL                             
-(Number of results = 6)
+ 159     support                    0                LOCAL        PUBLIC                IP             Not support MGW report IP/ATM bearer resources  NULL                             
+(Number of results = 7)
 
 ---    END
+

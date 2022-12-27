@@ -36,7 +36,7 @@ E.g.
 ## Another Option
 
 Using sagic creates file or files of different sites on different elements. But there is another
-option of create a single site per eac command.
+option of create a single site per each command.
 Instead of using `sagic` script, you can do like so:
 
 ```
